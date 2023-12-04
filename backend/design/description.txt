@@ -1,0 +1,47 @@
+- Nỗi đau:
+    + Khách hàng: 
+        Việc tìm kiếm sản phẩm tại cửa hàng khó hơn.
+        Khách thường không biết có loại xe họ cần hay không.
+        Lo ngại về giá.
+        Họ thường không biết xe đó còn mới không.
+        Khó đưa ra lựa chọn vì chưa biết giá bán khi sản phẩm còn mới.
+    + Người bán:
+        Khó quản lý xe tồn kho để tư vấn cho khách. 
+            (Ví dụ khách có 10tr thì người bán không nhớ hết được xe có tầm giá 10tr)
+        Khó tiếp cận khách hàng ở xa. 
+            (Nếu chỉ đăng fanpage facebook thì người lạ sẽ không biết shop có xe gì
+            Vì facebook không có phân loại bài đăng theo giá rẻ/giá cao nên bài đăng thường lộn xộn.)
+        Hạn chế trong việc truyền đạt thông tin chi tiết cho khách hàng.
+- Giải quyết nỗi đau khi có website:
+    + Khách hàng:
+        Dễ tìm kiếm sản phẩm họ cần.
+        Chủ động hơn về tài chính.
+    + Người bán:
+        Kiểm soát được hàng còn trong kho.
+        Dễ quảng bá thương hiệu.
+        Cung cấp nhiều thông tin hơn cho khách.
+
+Yêu cầu:
+    - Lọc sản phẩm theo giá
+    - Lọc sản phẩm theo hãng
+    - Lọc sản phẩm theo loại xe
+    - Lọc sản phẩm theo độ mới/cũ
+    - Lọc được sản phẩm theo tên
+    - Lọc theo số km đã đi
+    - Lọc theo dung dích xilanh
+    - Liên lạc được với người bán qua fb, zalo, gọi điện...
+
+Ý tưởng phát triển trong tương lai:
+    - Có thể tạo các chương trình giảm giá với từng loại xe, từng hãng xe, giảm sâu với xe có niên đại lớn...
+    - Thống kê kinh doanh theo quý.
+    - Thống kê sản phẩm bán chạy.
+
+1. xe máy: id, sku, tên xe, mô tả, thông số kỹ thuật, số km đã đi, dung tích xe, xuất xứ, loại xe, [hãng xe, dòng xe], hình ảnh
+    - loại xe (xe số, xe tay ga, xe côn, moto)
+    - 1 xe máy có id, sku, ten_xe không trùng nhau
+    - 1 xe máy thuộc 1 hãng sản xuất
+    - 1 xe máy có nhiều màu sắc khác nhau
+    - ứng với [màu sắc] sẽ có [số lượng tồn kho và giá bán] khác nhau.
+2. Hãng xe: [id, id dòng xe] khóa chính, tên hãng.
+3. Dòng xe: id dòng xe khóa chính, tên dòng
+4. Loại xe: id loại xe khóa chính, tên loại xe

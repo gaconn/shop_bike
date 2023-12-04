@@ -1,0 +1,11 @@
+version: '3.0'
+
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_DATABASE=shop_bike
+    ports:
+      - 3316:3306
+    restart: always
