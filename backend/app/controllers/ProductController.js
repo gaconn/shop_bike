@@ -1,6 +1,13 @@
+const ProductModel = require('../models/ProductModel')
 class ProductController {
-    getAll = (req, res) => {
-        return res.json({isSuccess: true});
+    getHomeProducts = async(req, res) => {
+        try {
+            const model = new ProductModel()
+            await model.getHomeList(req.params)
+            return res.json({isSuccess: true});
+        } catch (error) {
+            return res.json({isSuccess: false})
+        }
     }
 
     getProductById = (req, res) => {

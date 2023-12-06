@@ -3,7 +3,7 @@ const Router = express.Router();
 const ProductController = require('../controllers/ProductController');
 const auth = require('../middlewares/auth');
 
-Router.get('/all', ProductController.getAll)
+Router.get('/home_product', ProductController.getHomeProducts)
 Router.get('/:id', ProductController.getProductById)
 Router.post('/add', auth.checkIsAdmin, ProductController.addNewProduct)
 Router.put('/update', auth.checkIsAdmin, ProductController.updateProduct)
