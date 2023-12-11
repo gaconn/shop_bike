@@ -20,13 +20,6 @@ CREATE TABLE mau_sac (
   mau_sac VARCHAR(255)
 );
 
-CREATE TABLE hinh_anh (
-  id INT PRIMARY KEY,
-  id_xe_may INT,
-  src VARCHAR(255),
-  FOREIGN KEY (id_xe_may) REFERENCES xe_may(id)
-);
-
 CREATE TABLE xe_may (
   id INT PRIMARY KEY,
   sku VARCHAR(255) UNIQUE,
@@ -43,6 +36,13 @@ CREATE TABLE xe_may (
   deleted_date DATETIME,
   FOREIGN KEY (id_loai_xe) REFERENCES loai_xe(id),
   FOREIGN KEY (id_hang_xe) REFERENCES hang_xe(id)
+);
+
+CREATE TABLE hinh_anh (
+  id INT PRIMARY KEY,
+  id_xe_may INT,
+  src VARCHAR(255),
+  FOREIGN KEY (id_xe_may) REFERENCES xe_may(id)
 );
 
 CREATE TABLE xe_may_mau_sac (

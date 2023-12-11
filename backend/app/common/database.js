@@ -15,10 +15,11 @@ function isDBConnect() {
 function initDBConnect() {
     // create the connection to database
     try {
-        connection = mysql.createPool({
+        const pool = mysql.createPool({
             host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
             user: process.env.DB_USER,
-            database: provess.env.DB_NAME,
+            database: process.env.DB_NAME,
             password: process.env.DB_ROOT_PASSWORD,
             waitForConnections: DB_CONNECTION_POOL_WAIT_FOR_CONNECTIONS,
             connectionLimit: DB_CONNECTION_POOL_LIMIT,
@@ -28,14 +29,14 @@ function initDBConnect() {
             enableKeepAlive: DB_CONNECTION_POOL_IS_ENABLE_KEEP_ALIVE,
             keepAliveInitialDelay: DB_CONNECTION_POOL_KEEP_ALIVE_INITIAL_DELAY
         });
-        console.log(process.env.DB_HOST);
+        connection = pool.promise();
     } catch (error) {
         console.log("DB error: ", error);
     }
 }
 
 function getDBConnect() {
-    if (isDBConnect()) {
+    if (!isDBConnect()) {
         initDBConnect();
         return connection;
     }

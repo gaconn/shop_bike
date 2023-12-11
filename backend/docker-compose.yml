@@ -8,4 +8,14 @@ services:
       - MYSQL_DATABASE=shop_bike
     ports:
       - 3316:3306
-    restart: always
+    volumes:
+      - db-store:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - host
+networks:
+  host:
+volumes:
+  db-store:
+  cache:
+    driver: local

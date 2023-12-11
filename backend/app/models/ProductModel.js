@@ -1,4 +1,6 @@
 const common = require('../common/database')
+const constant = require('../common/constant')
+const {ModelCommonReturnBuilder} = require('../utils/ModelReturnBuilder')
 const MAX_UNIT_PER_PAGE = 10;
 
 class ProductModel {
@@ -11,6 +13,7 @@ class ProductModel {
 
     getHomeList = async (params) => {
         let offset = 0;
+        let result = new ModelCommonReturnBuilder();
         if (params.page) {
             offset = params.page * MAX_UNIT_PER_PAGE;
         } 
@@ -25,14 +28,22 @@ class ProductModel {
          FROM \
             xe_may\
          WHERE xe_may.deleted_date IS NULL\
-         OFFSET ?\
-         LIMIT ?\
          ORDER BY xe_may.updated_date desc,\
-                  xe_may.created_date desc';
-        const [rows, field] = await this.DBConnection.execute(query, [offset, MAX_UNIT_PER_PAGE]);
+                  xe_may.created_date desc\
+         LIMIT 10\
+         OFFSET 0';
+        
+        try {
+            const [rows, field] = await this.DBConnection.execute(query);
 
-        console.log(rows, field)
+            if (rows.length <= 0) {
+                return result.SetStatusCode(constant.DB_CONSTANT.QUERY_RESULT_NOT_FOUND).Build();
+            }
 
+            return result.SetStatusCode(constant.DB_CONSTANT.QUERY_RESULT_SUCCESS).SetDataResponse(rows).Build();
+        } catch (error) {
+            return result.SetStatusCode(constant.DB_CONSTANT.QUERY_RESULT_INTERNAL_ERROR).SetMessage(error.message).Build();
+        }
     }
 }
 

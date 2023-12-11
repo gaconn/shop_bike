@@ -3,10 +3,10 @@ class ProductController {
     getHomeProducts = async(req, res) => {
         try {
             const model = new ProductModel()
-            await model.getHomeList(req.params)
+            const result = await model.getHomeList(req.params)
             return res.json({isSuccess: true});
         } catch (error) {
-            return res.json({isSuccess: false})
+            return res.json({isSuccess: false, message: error.message})
         }
     }
 
