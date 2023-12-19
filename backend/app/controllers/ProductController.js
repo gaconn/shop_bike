@@ -1,12 +1,16 @@
-const ProductModel = require('../models/ProductModel')
+const ProductModel = require('../models/ProductModel');
+const { ResponseBuilder } = require('../utils/ResponseBuilder');
 class ProductController {
     getHomeProducts = async(req, res) => {
         try {
             const model = new ProductModel()
-            const result = await model.getHomeList(req.params)
-            return res.json({isSuccess: true});
+            const result = await model.getHomeList(req.query)
+            return res.json(result);
         } catch (error) {
-            return res.json({isSuccess: false, message: error.message})
+            var errorResponse = new ResponseBuilder();
+            errorResponse.SetMessage(error.message);
+            errorResponse.SetStatusCode(401);
+            return res.json(errorResponse.Build());
         }
     }
 
