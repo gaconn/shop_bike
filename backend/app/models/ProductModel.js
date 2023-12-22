@@ -15,23 +15,25 @@ class ProductModel {
         let offset = 0;
         let result = new ModelCommonReturnBuilder();
         if (params.page) {
-            offset = params.page * MAX_UNIT_PER_PAGE;
+            offset = (params.page-1) * MAX_UNIT_PER_PAGE;
         } 
 
         let query = 
-        'SELECT xe_may.id AS id_xe_may,\
+        `SELECT xe_may.id AS id_xe_may,\
                 xe_may.sku AS sku,\
                 xe_may.ten_xe AS ten_xe,\
                 xe_may.created_date AS created_date,\
                 xe_may.updated_date AS updated_date,\
-                xe_may.deleted_date AS deleted_date\
+                xe_may.deleted_date AS deleted_date,\
+                GROUP_CONCAT(CONCAT('{id: "', hinh_anh.id, '",', 'src: "', hinh_anh.src, '"}') SEPARATOR ',') AS list_images\
          FROM \
-            xe_may\
+            xe_may LEFT JOIN hinh_anh ON xe_may.id = hinh_anh.id_xe_may\
          WHERE xe_may.deleted_date IS NULL\
+         GROUP BY xe_may.id\
          ORDER BY xe_may.updated_date desc,\
                   xe_may.created_date desc\
          LIMIT 10\
-         OFFSET 0';
+         OFFSET ${offset}`;
         
         try {
             const [rows, field] = await this.DBConnection.execute(query);
