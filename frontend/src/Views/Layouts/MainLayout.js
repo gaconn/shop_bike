@@ -1,7 +1,7 @@
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Outlet, redirect } from 'react-router-dom'
 import MainLayoutNavbar from '../Components/MainLayoutNavbar'
-import LeftFilter from '../Components/LeftFilter'
+import { ROUTES } from '../../Common/Const'
 
 const MainLayout = () => {
   return (

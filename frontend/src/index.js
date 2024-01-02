@@ -5,7 +5,6 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import MainLayout from './Views/Layouts/MainLayout';
 import ErrorComponent from './Views/Components/ErrorComponent';
 import Home from './Views/Pages/Home';
-import { ROUTES } from './Common/Const';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +13,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorComponent />,
     children: [
       {
-        path: ROUTES.home,
+        index: true,
         element: <Home />
       }
     ]

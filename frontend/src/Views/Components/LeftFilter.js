@@ -69,6 +69,8 @@ const LeftFilter = () => {
                 </div>
             </div>
         </div>
+
+        <button className='mt-3 border border-solid border-black rounded pt-1 pb-1 pl-1 pr-1 bg-gray-400 hover:bg-slate-500'>Bỏ lọc</button>
     </div>
   )
 }

@@ -1,12 +1,13 @@
 import React from 'react'
-import LeftFilter from '../Components/LeftFilter'
+import Banner from '../Components/Banner'
 
 const Home = () => {
   return (
-    <div className='flex'>
-      <LeftFilter />
-      <div className='ml-3 mt-2'>
-        hello wrold
+    <div>
+      <Banner />
+      <div>
+        <h3>Danh sách sản phẩm mới</h3>
+        
       </div>
     </div>
   )
